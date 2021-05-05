@@ -1,0 +1,25 @@
+							Seneryo:
+
+ Kahve dükkanlarý için müþteri yönetimi yapan bir sistem 
+				        yazmak istiyoruz.
+
+		Starbucks Ve Nero Firmasý için çalýþýyoruz.
+Ýki firma da müþterilerini veri tabanýna kaydetmek istiyor.
+
+Starbucks müþterilerini veri tabanýna kaydederken mutlaka mernis
+doðrulamasý istiyor.Nero müþterilerini kaydederken böyle bir 
+						þey istemiyor.
+
+Starbucks müþteriler için kahve alýmýnda yýldýz kazandýrmak 
+							istiyor.
+
+https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL
+
+Java için execution environment JRE: JavaSE-1.8 olarak seçilmeli
+Bunun için proje oluþturulurken JRE içerisinden JavaSE-1.8 seç.
+Proje ismin sað týklayýp new diyerek Other seçeneðine týkla.
+Other da Web Service Client i ara ve seç ileri tuþuna bas.
+Service defination kýsmýna yukarýdaki linki kopyala 16.satýrdaki.
+Finish tuþuna bas.
+
+
