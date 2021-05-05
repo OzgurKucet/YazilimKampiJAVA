@@ -14,13 +14,12 @@ public class MernisServiceAdapter implements CustomerCheckService{
 		KPSPublicSoapProxy client = new KPSPublicSoapProxy();
 		
 		Long kimlik = Long.parseLong(customer.getNationalityId(), 10);
-		int dogumYýlý = customer.getDateOfBirth().getYear();
-		System.out.println(kimlik+"   "+dogumYýlý);
-		
+		int dogumYili = customer.getDateOfBirth().getYear();				
 		
 		
 		try {
-			return client.TCKimlikNoDogrula(kimlik,customer.getFirstName().toUpperCase(),customer.getLastName().toUpperCase(),dogumYýlý);
+			return client.TCKimlikNoDogrula(kimlik,customer.getFirstName().toUpperCase(),
+					customer.getLastName().toUpperCase(),dogumYili);
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();

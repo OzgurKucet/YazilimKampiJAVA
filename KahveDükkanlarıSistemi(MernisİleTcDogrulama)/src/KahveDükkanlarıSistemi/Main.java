@@ -15,7 +15,6 @@ public class Main {
 		customerManager.Save(new Customer(1,"engin","demiroð",LocalDate.of(1985,1,6),"28861499108"));
 		
 		System.out.println();
-		
 	}
 
 }
