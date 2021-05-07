@@ -1,4 +1,4 @@
-package nLayeredDemo.business.concretes;
+package nLayeredDemo.dataAccess.concretes;
 
 import java.util.List;
 

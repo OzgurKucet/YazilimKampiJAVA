@@ -5,7 +5,7 @@ import java.util.List;
 import nLayeredDemo.business.abstracts.productService;
 import nLayeredDemo.core.LoggerService;
 import nLayeredDemo.dataAccess.abstracts.ProductDao;
-import nLayeredDemo.dataAccess.concretes.HibernateProductDao;
+import nLayeredDemo.dataAccess.concretes.HybernateProductDao;
 import nLayeredDemo.entities.concretes.Product;
 
 public class ProductManager implements productService{

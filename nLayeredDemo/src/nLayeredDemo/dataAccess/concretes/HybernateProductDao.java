@@ -5,7 +5,7 @@ import java.util.List;
 import nLayeredDemo.dataAccess.abstracts.ProductDao;
 import nLayeredDemo.entities.concretes.Product;
 
-public class HibernateProductDao implements ProductDao{
+public class HybernateProductDao implements ProductDao{
 
 	@Override
 	public void add(Product product) {

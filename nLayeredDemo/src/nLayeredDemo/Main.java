@@ -1,10 +1,10 @@
 package nLayeredDemo;
 
 import nLayeredDemo.business.abstracts.productService;
-import nLayeredDemo.business.concretes.AbcProductDao;
 import nLayeredDemo.business.concretes.ProductManager;
 import nLayeredDemo.core.jLoggerManagerAdapter;
-import nLayeredDemo.dataAccess.concretes.HibernateProductDao;
+import nLayeredDemo.dataAccess.concretes.AbcProductDao;
+import nLayeredDemo.dataAccess.concretes.HybernateProductDao;
 import nLayeredDemo.entities.concretes.Product;
 
 public class Main {
