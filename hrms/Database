@@ -5,22 +5,34 @@ BEGIN;
 
 CREATE TABLE public.candidate
 (
-    id integer NOT NULL,
+    user_id integer NOT NULL,
     nationality_id character varying(11) NOT NULL,
     first_name character varying(30) NOT NULL,
     last_name character varying(30) NOT NULL,
-    birthday_date date NOT NULL,
+    birthday_date date,
+    verify boolean,
+    PRIMARY KEY (user_id)
+);
+
+CREATE TABLE public.comfirm_employers
+(
+    id integer NOT NULL,
+    employer_id integer NOT NULL,
+    comfirmed_stuff_id integer NOT NULL,
+    confirmed_date timestamp with time zone,
+    is_confirmed boolean,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE public.employers
 (
-    id integer NOT NULL,
-    company_name character varying(70) NOT NULL,
+    user_id integer NOT NULL,
+    company_name character varying(100) NOT NULL,
     phone_number character varying(20) NOT NULL,
-    web_site character varying(200) NOT NULL,
-    verify_system boolean NOT NULL,
-    PRIMARY KEY (id)
+    web_site character varying(200),
+    verify boolean,
+    user_confirm boolean,
+    PRIMARY KEY (user_id)
 );
 
 CREATE TABLE public.jobs
@@ -32,10 +44,11 @@ CREATE TABLE public.jobs
 
 CREATE TABLE public.system_users
 (
-    id integer NOT NULL,
+    user_id integer NOT NULL,
     first_name character varying(30) NOT NULL,
     last_name character varying(30) NOT NULL,
-    PRIMARY KEY (id)
+    verify boolean,
+    PRIMARY KEY (user_id)
 );
 
 CREATE TABLE public.users
@@ -43,25 +56,163 @@ CREATE TABLE public.users
     id integer NOT NULL,
     email character varying(60) NOT NULL,
     password character varying(40) NOT NULL,
-    confirm boolean NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.verify_candidate
+(
+    id integer NOT NULL,
+    candidate_id integer,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.verify_code
+(
+    id integer NOT NULL,
+    verify_code character varying(70),
+    is_confirmed boolean,
+    created_date date,
+    confirmed_da date,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.verify_employers
+(
+    id integer NOT NULL,
+    employer_id integer,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.verify_system_users
+(
+    id integer NOT NULL,
+    system_users_id integer,
     PRIMARY KEY (id)
 );
 
 ALTER TABLE public.candidate
+    ADD FOREIGN KEY (user_id)
+    REFERENCES public.users (id)
+    NOT VALID;
+
+
+ALTER TABLE public.candidate
+    ADD FOREIGN KEY (user_id)
+    REFERENCES public.users (id)
+    NOT VALID;
+
+
+ALTER TABLE public.comfirm_employers
+    ADD FOREIGN KEY (comfirmed_stuff_id)
+    REFERENCES public.system_users (user_id)
+    NOT VALID;
+
+
+ALTER TABLE public.comfirm_employers
+    ADD FOREIGN KEY (employer_id)
+    REFERENCES public.employers (user_id)
+    NOT VALID;
+
+
+ALTER TABLE public.comfirm_employers
     ADD FOREIGN KEY (id)
+    REFERENCES public.verify_code (id)
+    NOT VALID;
+
+
+ALTER TABLE public.employers
+    ADD FOREIGN KEY (user_id)
     REFERENCES public.users (id)
     NOT VALID;
 
 
 ALTER TABLE public.employers
-    ADD FOREIGN KEY (id)
+    ADD FOREIGN KEY (user_id)
     REFERENCES public.users (id)
     NOT VALID;
 
 
 ALTER TABLE public.system_users
-    ADD FOREIGN KEY (id)
+    ADD FOREIGN KEY (user_id)
     REFERENCES public.users (id)
+    NOT VALID;
+
+
+ALTER TABLE public.system_users
+    ADD FOREIGN KEY (user_id)
+    REFERENCES public.users (id)
+    NOT VALID;
+
+
+ALTER TABLE public.verify_candidate
+    ADD FOREIGN KEY (candidate_id)
+    REFERENCES public.candidate (user_id)
+    NOT VALID;
+
+
+ALTER TABLE public.verify_candidate
+    ADD FOREIGN KEY (candidate_id)
+    REFERENCES public.candidate (user_id)
+    NOT VALID;
+
+
+ALTER TABLE public.verify_candidate
+    ADD FOREIGN KEY (id)
+    REFERENCES public.verify_code (id)
+    NOT VALID;
+
+
+ALTER TABLE public.verify_candidate
+    ADD FOREIGN KEY (id)
+    REFERENCES public.verify_code (id)
+    NOT VALID;
+
+
+ALTER TABLE public.verify_employers
+    ADD FOREIGN KEY (employer_id)
+    REFERENCES public.employers (user_id)
+    NOT VALID;
+
+
+ALTER TABLE public.verify_employers
+    ADD FOREIGN KEY (employer_id)
+    REFERENCES public.employers (user_id)
+    NOT VALID;
+
+
+ALTER TABLE public.verify_employers
+    ADD FOREIGN KEY (id)
+    REFERENCES public.verify_code (id)
+    NOT VALID;
+
+
+ALTER TABLE public.verify_employers
+    ADD FOREIGN KEY (id)
+    REFERENCES public.verify_code (id)
+    NOT VALID;
+
+
+ALTER TABLE public.verify_system_users
+    ADD FOREIGN KEY (id)
+    REFERENCES public.verify_code (id)
+    NOT VALID;
+
+
+ALTER TABLE public.verify_system_users
+    ADD FOREIGN KEY (id)
+    REFERENCES public.verify_code (id)
+    NOT VALID;
+
+
+ALTER TABLE public.verify_system_users
+    ADD FOREIGN KEY (system_users_id)
+    REFERENCES public.system_users (user_id)
+    NOT VALID;
+
+
+ALTER TABLE public.verify_system_users
+    ADD FOREIGN KEY (system_users_id)
+    REFERENCES public.system_users (user_id)
     NOT VALID;
 
 END;
